@@ -1,0 +1,64 @@
+﻿@model PagedList.IPagedList<AgendaTelefonica.Models.Contato>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Lista";
+}
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Novo Contato", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Contatoes", FormMethod.Get))
+{
+    <p>
+        Buscar por nome: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            Endereço
+        </th>
+        <th>
+            Empresa
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endereco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.IDContato }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.IDContato })  |
+                @Html.ActionLink("Inserir Telefone", "Create", "Telefones") |
+                @Html.ActionLink("Inserir E-mail", "Create", "Emails")|
+                @Html.ActionLink("Excluir", "Delete", new { id = item.IDContato })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+             new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

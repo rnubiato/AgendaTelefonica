@@ -1,0 +1,42 @@
+﻿@model AgendaTelefonica.Models.Email
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>E-mail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Contato.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contato.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDEmail }) |
+    @Html.ActionLink("Voltar para Lista", "Index")
+</p>

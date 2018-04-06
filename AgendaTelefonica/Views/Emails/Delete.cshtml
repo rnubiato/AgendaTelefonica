@@ -1,0 +1,48 @@
+﻿@model AgendaTelefonica.Models.Email
+
+@{
+    ViewBag.Title = "Excluir E-mail";
+}
+
+<h2>Excluir</h2>
+
+<h3>Tem certeza que deseja excluir este item?</h3>
+<div>
+    <h4>E-mail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Contato.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contato.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoEmail)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar para Lista", "Index")
+        </div>
+    }
+</div>
